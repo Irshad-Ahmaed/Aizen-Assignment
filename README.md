@@ -22,7 +22,7 @@ This project is a **secure image upload and management system** with **JWT authe
 | **Authentication** | JWT (JSON Web Tokens) |
 | **Storage** | Amazon S3 |
 | **AI Integration** | Google Gemini AI |
-| **Deployment** | AWS EC2 (backend), S3 + CloudFront (frontend) |
+| **Deployment** | Render (backend), Vercel (frontend) |
 
 ---
 
@@ -51,8 +51,8 @@ This project is a **secure image upload and management system** with **JWT authe
 
 ### **1️⃣ Clone the Repository**  
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone https://github.com/Irshad-Ahmaed/Aizen-Assignment.git
+cd Aizen-Assignment
 python -m venv venv
 source venv/Scripts/activate  # On Windows
 pip install -r requirements.txt
