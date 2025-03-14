@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 const Dashboard = () => {
-    const {user} = useContext(AuthContext);
+    const {user} = useContext(AuthContext) as any;
 
     return (
         <div className="container mx-auto">

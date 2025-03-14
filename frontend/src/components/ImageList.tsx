@@ -3,8 +3,8 @@ import { fetchImages } from "../api/image";
 import { AuthContext } from "../context/AuthContext";
 
 const ImageList = () => {
-    const [images, setImages] = useState<object>([]);
-    const { token, image, setError, error } = useContext(AuthContext);
+    const [images, setImages] = useState<any>([]);
+    const { token, image, setError } = useContext(AuthContext) as any;
 
     useEffect(() => {
         if (token) {

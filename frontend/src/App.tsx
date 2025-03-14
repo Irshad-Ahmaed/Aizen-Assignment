@@ -8,7 +8,7 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 
 const ProtectedRoute = ({ children }: { children: any }) => {
-    const { token } = useContext(AuthContext);
+    const { token } = useContext(AuthContext) as any;
     return token ? children : <Navigate to="/login" />;
 };
 

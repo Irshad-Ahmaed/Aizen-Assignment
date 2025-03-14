@@ -4,7 +4,7 @@ import Dashboard from "./Dashboard";
 import Login from "./Login";
 
 const Home = () => {
-    const {token} = useContext(AuthContext);
+    const {token} = useContext(AuthContext) as any;
     
     return (
         <div>

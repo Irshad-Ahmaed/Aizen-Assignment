@@ -10,7 +10,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState("");
   const [loading, setIsLoading] = useState<boolean>(false);
 
-  const { setToken, setUser } = useContext(AuthContext);
+  const { setToken, setUser } = useContext(AuthContext) as any;
   const navigate = useNavigate();
 
   // Handle email and password change

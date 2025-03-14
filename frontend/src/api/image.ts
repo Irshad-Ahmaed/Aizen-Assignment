@@ -8,7 +8,9 @@ const axiosInstance = axios.create({
 });
 
 // Upload Image
-export const uploadImage = async (file: File, token: string): Promise<{ success: boolean; message: string }> => {
+export const uploadImage = async (file: File, token: string): Promise<{
+    file_url: any; success: boolean; message: string 
+}> => {
     const formData = new FormData();
     formData.append("image", file);
 
@@ -36,9 +38,9 @@ export const fetchImages = async (token: string): Promise<{ images: string[] }> 
             },
         });
         console.log("Fetch Images Response:", response);
-        if(response.data.message === 'No Image Found'){
-            return [];
-        }
+        // if(response.data.message === 'No Image Found'){
+        //     return response.data;
+        // }
         return response.data;
     } catch (error) {
         console.error("Error fetching images:", error);

@@ -8,7 +8,7 @@ const AuthForm = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [isLogin, setIsLogin] = useState<boolean>(true);
-    const { setToken } = useContext(AuthContext);
+    const { setToken } = useContext(AuthContext) as any;
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {

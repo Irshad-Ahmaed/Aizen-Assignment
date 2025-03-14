@@ -1,14 +1,14 @@
 import { useState, useRef, useContext } from "react";
 import { uploadImage } from "../api/image";
 import { AuthContext } from "../context/AuthContext";
-import { File, RotateCcwIcon } from "lucide-react";
+import { RotateCcwIcon } from "lucide-react";
 
 const UploadForm = () => {
     const [file, setFile] = useState<File | null>(null);
     const [loading, setIsLoading] = useState<boolean>(false);
 
     let fileInputRef = useRef<HTMLInputElement | null>(null); // Reference to input element
-    const { token, setImage } = useContext(AuthContext);
+    const { token, setImage } = useContext(AuthContext) as any;
 
     const handleUpload = async () => {
         setIsLoading(true);
@@ -18,9 +18,9 @@ const UploadForm = () => {
         };
         
         try {
-            // const response = await uploadImage(file, token);
-            console.log("Uploaded:");
-            // setImage(response.file_url);
+            const response = await uploadImage(file, token);
+            const image_url = response.file_url;
+            setImage(image_url);
         } catch (error) {
             console.error("Upload failed", error);
         } finally{
