@@ -70,7 +70,7 @@ def list_images():
         user_id = get_jwt_identity()
         images = Image.query.filter_by(user_id=user_id).all()
         if not images:
-            return jsonify({"message": "No Image Found"}), 200
+            return jsonify({"message": "No Image Found"}), 401
 
         # Format the image data for response
         image_data = [{"id": img.id, "file_name": img.file_name, "file_url": img.file_url, "ai_description": img.ai_description} for img in images]

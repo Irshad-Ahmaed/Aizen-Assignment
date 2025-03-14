@@ -30,10 +30,18 @@ const Signup: React.FC = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const resp = await register(username, email, password);
-    setIsLoading(false);
-    if(resp.message === 'User registered successfully'){
-      navigate("/login");
+    try {
+      const resp = await register(username, email, password);
+      if(resp.message === 'User registered successfully'){
+        navigate("/login");
+      }
+    } catch (error: any) {
+      alert(error.response.data.message);
+      setEmail('');
+      setPassword('');
+      setUsername('');
+    } finally {
+      setIsLoading(false);
     }
   };
 

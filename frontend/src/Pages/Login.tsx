@@ -9,6 +9,7 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const { setToken, setUser } = useContext(AuthContext) as any;
   const navigate = useNavigate();
@@ -27,11 +28,21 @@ const Login: React.FC = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const data = await login(email, password);
-    setIsLoading(false);
-    setToken(data.access_token);
-    setUser(data.user);
-    navigate("/dashboard");
+    try {
+      const data = await login(email, password);
+      setToken(data.access_token);
+      setUser(data.user);
+      setError(null);
+      navigate("/dashboard");
+
+    } catch (error: any) {
+      setError(error);
+      setEmail('');
+      setPassword('');
+      
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -40,6 +51,7 @@ const Login: React.FC = () => {
         <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
           Welcome Back
         </h2>
+        {error && <span className="text-red-500 mx-[25%] text-center w-full">{error}</span>}
         <form className="space-y-6" onSubmit={handleSubmit}>
           {/* Email Input */}
           <div>

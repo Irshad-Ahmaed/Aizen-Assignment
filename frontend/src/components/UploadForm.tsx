@@ -6,6 +6,7 @@ import { RotateCcwIcon } from "lucide-react";
 const UploadForm = () => {
     const [file, setFile] = useState<File | null>(null);
     const [loading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
 
     let fileInputRef = useRef<HTMLInputElement | null>(null); // Reference to input element
     const { token, setImage } = useContext(AuthContext) as any;
@@ -21,12 +22,13 @@ const UploadForm = () => {
             const response = await uploadImage(file, token);
             const image_url = response.file_url;
             setImage(image_url);
-        } catch (error) {
+            setError(null);
+        } catch (error: any) {
+            setError(error);
             console.error("Upload failed", error);
         } finally{
             setFile(null);
             fileInputRef.current = null;
-            console.log('finally', fileInputRef);
             setIsLoading(false);
         }
     };
@@ -61,6 +63,8 @@ const UploadForm = () => {
                     className="text-violet-400 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white hover:bg-violet-400 hover:text-white transition-all duration-200 cursor-pointer">
                         Upload {loading && <RotateCcwIcon size={20} className=" animate-spin"/>}
                 </button>
+
+                {error && <span className="text-red-500">{error}</span>}
             </div>
         </div>
     );

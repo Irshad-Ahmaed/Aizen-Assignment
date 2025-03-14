@@ -23,9 +23,9 @@ export const uploadImage = async (file: File, token: string): Promise<{
         });
         console.log("Image Upload Response:", response); // Debugging
         return response.data;
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error uploading image:", error);
-        throw error;
+        throw error.response.data.message;
     }
 };
 
@@ -38,12 +38,9 @@ export const fetchImages = async (token: string): Promise<{ images: string[] }> 
             },
         });
         console.log("Fetch Images Response:", response);
-        // if(response.data.message === 'No Image Found'){
-        //     return response.data;
-        // }
         return response.data;
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error fetching images:", error);
-        throw error;
+        throw error.response.data.message;
     }
 };

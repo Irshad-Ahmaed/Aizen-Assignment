@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode, useEffect } from "react";
+import { createContext, useState, ReactNode } from "react";
 
 interface AuthContextType {
     token: string | null;
@@ -7,8 +7,6 @@ interface AuthContextType {
     setUser: (name: string | null) => void;
     image: string | null;
     setImage: (image: string | null) => void;
-    error: string;
-    setError: (error: string) => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -17,19 +15,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [token, setToken] = useState<string | null>(localStorage.getItem("token") || null);
     const [user, setUser] = useState<string | null>(localStorage.getItem("user") || null);
     const [image, setImage] = useState<string | null>(localStorage.getItem("image") || null);
-    const [error, setError] = useState<string>('');
+    // const [error, setError] = useState<string | null>(null);
 
-    useEffect(()=>{
-        console.log('error', error);
-        if(error === 'Request failed with status code 401'){
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
-            localStorage.removeItem("image");
-            setToken(null);
-            setUser(null);
-            setImage(null);
-        }
-    }, [error])
+    // useEffect(()=>{
+    //     console.log('error', error);
+    //     if(error === 'Request failed with status code 401'){
+    //         localStorage.removeItem("token");
+    //         localStorage.removeItem("user");
+    //         localStorage.removeItem("image");
+    //         setToken(null);
+    //         setUser(null);
+    //         setImage(null);
+    //     }
+    // }, [error])
 
     const handleSetToken = (newToken: string | null): void => {
         if (newToken) {
@@ -59,7 +57,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ token, setToken: handleSetToken, user, setUser:handleUserDetail, image, setImage: handleImageDetail, error, setError }}>
+        <AuthContext.Provider value={{ token, setToken: handleSetToken, user, setUser:handleUserDetail, image, setImage: handleImageDetail }}>
             {children}
         </AuthContext.Provider>
     );
