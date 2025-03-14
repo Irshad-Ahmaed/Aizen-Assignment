@@ -64,7 +64,7 @@ def login():
         if user and check_password_hash(user.password, password):
             # Generate JWT access token
             access_token = create_access_token(identity=str(user.id))
-            return jsonify({"access_token": access_token}), 200
+            return jsonify({"access_token": access_token, "user": user.username}), 200
 
         return jsonify({"message": "Invalid email or password"}), 401
 
