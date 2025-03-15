@@ -87,8 +87,6 @@ npm run dev
 - POST /auth/login → Login & receive JWT token
 
 ### **2️⃣ Image Management**  
-- POST /images/upload → Upload an image
+- POST /images/upload → Upload an image + Analyze image using Gemini AI
 
 - GET /images → Get all user images
-
-- GET /images/analyze/:image_id → Analyze image using Gemini AI
