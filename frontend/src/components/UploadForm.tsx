@@ -15,6 +15,7 @@ const UploadForm = () => {
         setIsLoading(true);
         if (!file || !token) {
             setIsLoading(false);
+            setError('Choose a file to upload');
             return;
         };
         
@@ -25,7 +26,7 @@ const UploadForm = () => {
             setError(null);
         } catch (error: any) {
             setError(error);
-            console.error("Upload failed", error);
+            // console.error("Upload failed", error);
         } finally{
             setFile(null);
             fileInputRef.current = null;

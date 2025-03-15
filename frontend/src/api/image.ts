@@ -21,10 +21,10 @@ export const uploadImage = async (file: File, token: string): Promise<{
                 "Content-Type": "multipart/form-data",
             },
         });
-        console.log("Image Upload Response:", response); // Debugging
+        // console.log("Image Upload Response:", response); // Debugging
         return response.data;
     } catch (error: any) {
-        console.error("Error uploading image:", error);
+        // console.error("Error uploading image:", error);
         throw error.response.data.message;
     }
 };
@@ -37,10 +37,10 @@ export const fetchImages = async (token: string): Promise<{ images: string[] }> 
                 Authorization: `Bearer ${token}`,
             },
         });
-        console.log("Fetch Images Response:", response);
+        // console.log("Fetch Images Response:", response);
         return response.data;
     } catch (error: any) {
-        console.error("Error fetching images:", error);
+        // console.error("Error fetching images:", error);
         throw error.response.data.message;
     }
 };
